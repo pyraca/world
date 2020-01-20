@@ -1,0 +1,3 @@
+#!/bin/bash
+#
+sudo apt install vim ctags vim-doc vim-scripts -y

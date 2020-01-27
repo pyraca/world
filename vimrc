@@ -3,7 +3,9 @@ filetype off                  " required
 filetype plugin indent on
 syntax on
 set tabstop=3
-
+set softtabstop=3
+set shiftwidth=3
+set expandtab
 
 set number relativenumber
 " set number
@@ -29,8 +31,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'Chiel92/vim-autoformat'
+"Plugin 'jiangmiao/auto-pairs'
+"Plugin 'Chiel92/vim-autoformat'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 
@@ -94,9 +96,39 @@ noremap <F3> :Autoformat<CR>
 
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
+nmap <C-k> <C-w>k
 "
+set timeout ttimeoutlen=50
 " Map tab to go to next window when split
 map <M-Tab> <C-W>w
 
+let mapleader = ","
+"
+" Moving lines around and selections
+" Normal mode
+"
+nnoremap <Leader>k :m-2<CR>==
+nnoremap <Leader>j :m+<CR>==
+"
+" Insert mode
+"
+inoremap <Leader>j <Esc>:m +.1<CR>==gi
+inoremap <Leader>k <Esc>:m -.2<CR>==gi
+" 
+" Visual mode
+"
+vnoremap <Leader>j <Esc>'<,'>:m '>+1<CR>gv=gv
+vnoremap <Leader>k <Esc>'<,'>:m '<-2<CR>gv=gv
+"
+" One
+" Two
+" Three
+" Four
+" Five
+" Six
+" Seven
+" Eight
+" Nine
+" Ten
+"

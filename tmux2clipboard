@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+type=`uname | tr '[:upper:]' '[:lower:]'`
+#
+if [ "darwin" == "$type" ]; then
+   tmux save-buffer - | pbcopy - 
+   tmux display-message "Copied to Mac Clipboard."
+else
+   tmux save-buffer - | xclip -i -sel clipboard
+   tmux display-message "Copied to XClipboard."
+fi
+#
+

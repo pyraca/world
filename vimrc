@@ -15,6 +15,14 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
+set path+=**
+set wildmenu
+
+command! MakeTags !ctags -R .
+" Use ^] to jump to tag
+" Use ^t to jump back
+" Use g^] to show all locations where tags exist
+"
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -34,6 +42,7 @@ Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Chiel92/vim-autoformat'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'Valloric/YouCompleteMe'
 
 
 " The following are examples of different formats supported.
@@ -75,18 +84,21 @@ filetype plugin indent on    " required
 set laststatus=2
 "
 "
-map <C-o> :NERDTreeToggle<CR>
+map <C-o> :NERDTreeToggle %<CR>
 let NERDTreeShowHidden=1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_java_checkers = []
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+
+let g:ycm_min_num_of_chars_for_completion = 1
 
 " update vim-gutter to 100ms
 set updatetime=100

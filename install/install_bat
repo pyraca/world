@@ -1,4 +1,10 @@
 #!/bin/bash
 #
-sudo apt install bat -y
+source _env
+#
+if [ $sys = "darwin" ]; then
+   brew install bat
+else
+   sudo apt install bat -y
+fi
 #

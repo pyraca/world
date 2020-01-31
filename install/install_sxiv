@@ -3,9 +3,8 @@
 source _env
 #
 if [ $sys = "darwin" ]; then
-   brew install tig 
+   brew install sxiv
 else
-   sudo apt install tig -y
+   sudo apt install sxiv -y
 fi
-#
 #

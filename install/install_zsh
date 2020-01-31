@@ -1,3 +1,9 @@
 #!/bin/bash
 #
-sudo apt install zsh  -y
+source _env
+#
+if [ $sys = "darwin" ]; then
+  brew install zsh
+else
+  sudo apt install zsh  -y
+fi

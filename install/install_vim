@@ -1,3 +1,9 @@
 #!/bin/bash
 #
-sudo apt install vim ctags vim-doc vim-scripts -y
+source _env
+#
+if [ $sys = "darwin" ]; then
+  brew install macvim ctags vim-doc vim-scripts 
+else
+  sudo apt install vim ctags vim-doc vim-scripts -y
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+source _env
+#
+if [ $sys = "darwin" ]; then
+   brew install sxiv
+else
+   sudo apt install sxiv -y
+fi
+#

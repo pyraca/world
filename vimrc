@@ -99,6 +99,7 @@ let g:syntastic_check_on_wq = 0
 
 
 let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_key_list_stop_completion = [ '<C-y>', '<Enter>' ]
 
 " update vim-gutter to 100ms
 set updatetime=100

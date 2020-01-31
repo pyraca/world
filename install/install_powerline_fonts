@@ -1,4 +1,11 @@
 #!/bin/bash
 #
-sudo apt-get install fonts-powerline
+source _env
+#
+if [ $sys = "darwin" ]; then
+   brew install fonts-powerline
+else
+   sudo apt-get install fonts-powerline
+fi
+#
 

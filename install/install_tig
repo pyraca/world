@@ -1,5 +1,11 @@
 #!/bin/bash
 #
-sudo apt install tig -y
+source _env
+#
+if [ $sys = "darwin" ]; then
+   brew install tig 
+else
+   sudo apt install tig -y
+fi
 #
 #

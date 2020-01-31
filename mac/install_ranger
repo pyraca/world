@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+brew install install ranger 
+#
+brew install  feh atool mediainfo exiftool highlight 
+#

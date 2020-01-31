@@ -1,3 +1,10 @@
 #!/bin/bash
 #
-sudo apt install html2text -y
+source _env
+#
+if [ $sys = "darwin" ]; then
+   brew install html2text
+else
+   sudo apt install html2text -y
+fi
+#

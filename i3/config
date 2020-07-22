@@ -23,8 +23,9 @@ for_window [instance="dropdown_dropdowncalc"] border pixel 2
 for_window [instance="dropdown_*"] move position center
 
 # for_window [class="Vncviewer"] move workspace 3
+#assign [class="Vncviewer"] 3
 for_window [class="Thunderbird"] move workspace 4
-for_window [class="Chromium-browser"] move workspace 2
+for_window [class="Chromium-browser"] move workspace 5
 # It's the last class string >
 for_window [class="Google-chrome"] move workspace 2
 for_window [class="vlc"] move workspace 7
@@ -69,8 +70,8 @@ set $text-color #f3f4f5
 set $text-color #000001
 
 # bindsym $mod+d exec rofi -show run -lines 20 -eh 1.3 -opacity "85" -bw 0 -font "System San Francisco Display 10"
-bindsym $mod+d exec rofi -show run -show-icons -lines 15 -eh 1.5 -opacity "80" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$text-color" -hlfg "$bg-color" -font "System San Francisco Display 14"
-bindsym $mod+x exec rofi -show ssh -show-icons -lines 15 -eh 1.5 -opacity "80" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$text-color" -hlfg "$bg-color" -font "System San Francisco Display 14"
+bindsym $mod+d exec rofi -terminal urxvt -show run -show-icons -lines 15 -eh 1.5 -opacity "80" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$text-color" -hlfg "$bg-color" -font "System San Francisco Display 14"
+bindsym $mod+x exec rofi -terminal urxvt -show ssh -show-icons -lines 14 -eh 1.5 -opacity "80" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$text-color" -hlfg "$bg-color" -font "System San Francisco Display 14"
 bindsym $mod+g exec rofi -show window -show-icons -lines 15 -eh 1.5 -opacity "80" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$text-color" -hlfg "$bg-color" -font "System San Francisco Display 14"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications

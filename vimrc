@@ -43,6 +43,7 @@ Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'Chiel92/vim-autoformat'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'morhetz/gruvbox'
 
 
 " The following are examples of different formats supported.
@@ -133,6 +134,17 @@ inoremap <Leader>k <Esc>:m -.2<CR>==gi
 "
 vnoremap <Leader>j <Esc>'<,'>:m '>+1<CR>gv=gv
 vnoremap <Leader>k <Esc>'<,'>:m '<-2<CR>gv=gv
+
+
+let g:gruvbox_contrast_dark="hard"
+autocmd vimenter * colorscheme gruvbox 
+set background=dark    " Setting dark mode
+
+" -----
+" Create Blank Newlines and stay in Normal mode
+nnoremap <silent> zj o<Esc>k
+nnoremap <silent> zk O<Esc>j
+
 "
 " One
 " Two

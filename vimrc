@@ -2,6 +2,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin indent on
 syntax on
+" set spell 
+" set spelllang=en_us
+set hlsearch
 set tabstop=3
 set softtabstop=3
 set shiftwidth=3
@@ -15,8 +18,51 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+ endfun
+
+autocmd BufWritePre *.ino,*.h,*.c,*.java,*.cpp,*.hpp  :call <SID>StripTrailingWhitespaces()
+
 set path+=**
 set wildmenu
+
+" OR ELSE just the 81st column of wide lines...
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+" This rewires n and N to do the highlighing...
+nnoremap <silent> n   n:call HLNext(0.4)<cr>
+nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+" OR ELSE just highlight the match in red...
+function! _HLNext (blinktime)
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('WhiteOnRed', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
+
+ " EITHER blink the line containing the match...
+function! HLNext (blinktime)
+    set invcursorline
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    set invcursorline
+    redraw
+endfunction
+
+"====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
+
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
 
 command! MakeTags !ctags -R .
 " Use ^] to jump to tag

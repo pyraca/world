@@ -6,6 +6,7 @@ set tabstop=3
 set softtabstop=3
 set shiftwidth=3
 set expandtab
+set hlsearch
 
 set number relativenumber
 " set number
@@ -33,7 +34,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
+
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
+
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -41,7 +48,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Chiel92/vim-autoformat'
-Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'morhetz/gruvbox'
 
@@ -113,7 +120,7 @@ nmap <C-j> <C-w>j
 nmap <C-l> <C-w>l
 nmap <C-k> <C-w>k
 "
-set timeout ttimeoutlen=50
+set timeoutlen=1000
 " Map tab to go to next window when split
 map <M-Tab> <C-W>w
 
@@ -145,6 +152,35 @@ set background=dark    " Setting dark mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
 
+nnoremap <Leader>ff :Files!<CR>
+nnoremap <Leader>fg :GFiles!<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader><Enter> :silent! nohls<cr>
+"
+nnoremap <esc><esc> :silent! nohls<cr>
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+
+"
+" Make sure that ultisnips and you complete me does not interect
+"
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_key_list_stop_completion = [ '<C-y>', '<CR>' ]
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+"
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
+
+set completeopt=menu,preview
 "
 " One
 " Two

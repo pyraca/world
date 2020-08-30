@@ -2,6 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin indent on
 syntax on
+set encoding=utf-8
 " set spell 
 " set spelllang=en_us
 set hlsearch
@@ -61,7 +62,8 @@ endfunction
 
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
 
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+"exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+exec "set listchars=trail:\uB7,nbsp:~"
 set list
 
 command! MakeTags !ctags -R .
@@ -77,19 +79,31 @@ call vundle#begin()
 "
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'frazrepo/vim-rainbow'
 "Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Chiel92/vim-autoformat'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'preservim/nerdcommenter'
+" Plugin 'ctrlpvim/ctrlp.vim'
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'morhetz/gruvbox'
+" Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-surround'
+" Plugin 'majutsushi/tagbar'
+Plugin 'ervandew/supertab'
+Plugin 'pangloss/vim-javascript'
 
 
 " The following are examples of different formats supported.
@@ -130,9 +144,17 @@ filetype plugin indent on    " required
 " status plugin
 set laststatus=2
 "
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
 "
-map <C-o> :NERDTreeToggle %<CR>
-let NERDTreeShowHidden=1
+" map <C-o> :NERDTreeToggle %<CR>
+" let NERDTreeShowHidden=1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -146,22 +168,27 @@ let g:syntastic_check_on_wq = 0
 
 
 let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_key_list_stop_completion = [ '<C-y>', '<Enter>' ]
+let g:ycm_key_list_stop_completion = [ '<C-y>', '<CR>' ]
+
+" let g:rainbow_active = 1
 
 " update vim-gutter to 100ms
-set updatetime=100
+set updatetime=200
 
 " set :Autoformat command to <F3>
 noremap <F3> :Autoformat<CR>
+
+nmap <F8> :TagbarToggle<CR>
 
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-l> <C-w>l
 nmap <C-k> <C-w>k
 "
-set timeout ttimeoutlen=50
+set timeoutlen=1000
+
 " Map tab to go to next window when split
-map <M-Tab> <C-W>w
+" map <M-Tab> <C-W>w
 
 let mapleader = ","
 "
@@ -190,6 +217,22 @@ set background=dark    " Setting dark mode
 " Create Blank Newlines and stay in Normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.class,*.zip     " MacOSX/Linux
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "
 " One

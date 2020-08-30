@@ -1,5 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+
+
+
 filetype plugin indent on
 syntax on
 set encoding=utf-8
@@ -10,6 +14,7 @@ set tabstop=3
 set softtabstop=3
 set shiftwidth=3
 set expandtab
+set hlsearch
 
 set number relativenumber
 " set number
@@ -83,6 +88,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
+
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -173,7 +179,7 @@ let g:ycm_key_list_stop_completion = [ '<C-y>', '<CR>' ]
 " let g:rainbow_active = 1
 
 " update vim-gutter to 100ms
-set updatetime=200
+set updatetime=500
 
 " set :Autoformat command to <F3>
 noremap <F3> :Autoformat<CR>
@@ -186,7 +192,6 @@ nmap <C-l> <C-w>l
 nmap <C-k> <C-w>k
 "
 set timeoutlen=1000
-
 " Map tab to go to next window when split
 " map <M-Tab> <C-W>w
 
@@ -223,17 +228,71 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.class,*.zip     " MacOSX/Linux
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+nnoremap <Leader>ff :Files!<CR>
+nnoremap <Leader>fg :GFiles!<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader><Enter> :silent! nohls<cr>
+"
+nnoremap <esc><esc> :silent! nohls<cr>
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+
+"
+" Make sure that ultisnips and you complete me does not interect
+"
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_key_list_stop_completion = [ '<C-y>', '<CR>' ]
 
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
-
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+nnoremap <Leader>gf :execute "%! grep -A 4 -- " . shellescape(@/) ." %"<CR>
+
+
+function! RunLineCmd ()
+    "let [bufnum, lnum, col, off] = getpos('.')
+    let prev  = getpos('.')
+    let cmd = getline('.')
+    execute ("r !" . cmd)
+    call setpos ('.', prev)
+    execute ("normal! dd")
+endfunction
+
+function! EvalVimScriptLine ()
+    "let [bufnum, lnum, col, off] = getpos('.')
+    let prev  = getpos('.')
+    let cmd = getline('.')
+    execute "normal! A" . execute ("echo (" . cmd .")" ) . "\<esc>"
+    call setpos ('.', prev)
+    execute ("normal! dd")
+endfunction
+
+nnoremap <Leader>x :call RunLineCmd()<CR>
+nnoremap <Leader>e :call EvalVimScriptLine()<CR>
+
+function! PotionShowBytecode()
+    " Get the bytecode.
+    let bytecode = system(g:potion_command . " -c -V " . bufname("%") . " 2>&1")
+
+    " Open a new split and set it up.
+    vsplit __Potion_Bytecode__
+    normal! ggdG
+    setlocal filetype=potionbytecode
+    setlocal buftype=nofile
+
+    " Insert the bytecode.
+    call append(0, split(bytecode, '\v\n'))
+endfunction
+
+
+set completeopt=menu,preview
 "
 " One
 " Two

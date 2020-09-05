@@ -1,8 +1,8 @@
-install_bat
-install_fzf
-install_html2text
-install_powerline_fonts
-install_ranger
-install_tig
-install_tmux_things
-install_vundle
+#!/bin/bash
+#
+DIR=`dirname $0`
+cd $DIR
+for n in install_*; do
+   echo "Running: $n ..."
+   $n
+done

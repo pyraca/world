@@ -33,15 +33,20 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'junegunn/fzf' , { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
+
 "Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Chiel92/vim-autoformat'
-Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'morhetz/gruvbox'
 
@@ -116,7 +121,7 @@ nmap <C-k> <C-w>k
 set timeout ttimeoutlen=50
 " Map tab to go to next window when split
 map <M-Tab> <C-W>w
-
+ 
 let mapleader = ","
 "
 " Moving lines around and selections

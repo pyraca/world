@@ -84,7 +84,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf' , { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 
 Plugin 'itchyny/lightline.vim'
@@ -101,7 +101,7 @@ Plugin 'frazrepo/vim-rainbow'
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'morhetz/gruvbox'
 " Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
@@ -191,8 +191,6 @@ nmap <C-k> <C-w>k
 "
 set timeoutlen=1000
 " Map tab to go to next window when split
-" map <M-Tab> <C-W>w
-
 let mapleader = ","
 "
 " Moving lines around and selections

@@ -86,7 +86,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'junegunn/fzf' , { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
-
+Plugin 'junegunn/vim-easy-align'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -229,7 +229,6 @@ nnoremap <Leader>fg :GFiles!<CR>
 nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader><Enter> :silent! nohls<cr>
 "
-nnoremap <esc><esc> :silent! nohls<cr>
 
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
@@ -287,6 +286,11 @@ function! PotionShowBytecode()
     call append(0, split(bytecode, '\v\n'))
 endfunction
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 set completeopt=menu,preview
 "

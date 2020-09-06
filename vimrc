@@ -2,8 +2,6 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 
-
-
 filetype plugin indent on
 syntax on
 set encoding=utf-8

@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+source _env
+#
+if [ $sys = "darwin" ]; then
+   echo "This is a linux only thing..."
+else
+   sudo apt install variety -y
+fi
+#
+#

@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+source _env
+#
+if [ $sys = "darwin" ]; then
+   brew install bat
+else
+   sudo apt install ~/Downloads/zoom_amd64.deb -y
+fi
+#

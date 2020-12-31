@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+source _env
+#
+if [ $sys = "darwin" ]; then
+   echo "No redshift on mac"
+else
+   sudo apt install redshift redshift-gtk -y
+fi
+#
+#

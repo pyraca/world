@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+source _env
+#
+if [ $sys = "darwin" ]; then
+   echo "Not a mac thing"
+else
+   sudo apt install screenshot  -y
+fi
+#
+#

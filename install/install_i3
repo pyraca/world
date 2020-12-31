@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+source _env
+#
+if [ $sys = "darwin" ]; then
+   brew install bat
+else
+   sudo apt install i3 -y
+   sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool libxcb-shape0-dev 
+
+
+   mkdir github
+   cd github
+
+   if [ -d i3-gaps ]; then
+      git pull i3-gaps
+   else 
+      git clone https://www.github.com/Airblader/i3 i3-gaps
+   fi
+
+   cd i3-gaps
+   git checkout gaps && git pull
+   autoreconf --force --install
+   rm -rf build
+   mkdir build
+   cd build
+   ../configure --prefix=/usr --sysconfdir=/etc
+   make
+   sudo make install
+
+fi
+#

@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+source _env
+#
+if [ $sys = "darwin" ]; then
+   brew install curl
+else
+   sudo apt install curl -y
+fi
+#
+#

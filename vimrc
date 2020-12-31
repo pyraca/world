@@ -83,6 +83,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 " Plugin 'scrooloose/nerdtree'
+"
+" 
+" with number under cursor: gA show 4 representations;
+" commands are: crx,crd,cro,crb
+"
+Plugin 'glts/vim-magnum'
+Plugin 'glts/vim-radical'
+"
 Plugin 'scrooloose/syntastic'
 Plugin 'junegunn/fzf' , { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
@@ -94,6 +102,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'frazrepo/vim-rainbow'
 Plugin 'kamykn/spelunker.vim'
+
 "Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Chiel92/vim-autoformat'
 " Plugin 'preservim/nerdcommenter'
@@ -105,7 +114,17 @@ Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'morhetz/gruvbox'
 " Plugin 'mileszs/ack.vim'
+" 
+" Tim Pope plugins
+Plugin 'tpope/vim-repeat'
+" cs'" ds'
 Plugin 'tpope/vim-surround'
+" gcc
+Plugin 'tpope/vim-commentary'
+" 'fppp'
+" C-A and C-X on numbers and dates in vim
+Plugin 'tpope/vim-speeddating'
+""
 " Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'pangloss/vim-javascript'
@@ -261,6 +280,15 @@ function! RunLineCmd ()
     execute ("normal! dd")
 endfunction
 
+function! RunLineCmdX ()
+    "let [bufnum, lnum, col, off] = getpos('.')
+    let prev  = getpos('.')
+    let cmd = getline('.')
+    execute ("normal!o----\n----\n\<esc>2k")
+    execute ("r !" . cmd)
+    call setpos ('.', prev)
+endfunction
+
 function! EvalVimScriptLine ()
     "let [bufnum, lnum, col, off] = getpos('.')
     let prev  = getpos('.')
@@ -269,8 +297,9 @@ function! EvalVimScriptLine ()
     call setpos ('.', prev)
     execute ("normal! dd")
 endfunction
-
+"
 nnoremap <Leader>x :call RunLineCmd()<CR>
+nnoremap <Leader>X :call RunLineCmdX()<CR>
 nnoremap <Leader>e :call EvalVimScriptLine()<CR>
 
 function! PotionShowBytecode()

@@ -6,7 +6,6 @@ if [ $sys = "linux" ]; then
 sudo apt install ranger -y
 sudo apt install feh atool mediainfo exiftool highlight -y
 else
-brew install ranger 
-brew install feh atool mediainfo exiftool highlight 
+brew_install_or_upgrade ranger feh atool mediainfo exiftool highlight 
 fi
 #

@@ -3,7 +3,7 @@
 source _env
 #
 if [ $sys = "darwin" ]; then
-   brew install tig 
+   brew_install_or_upgrade  tig 
 else
    sudo apt install tig -y
 fi

@@ -1,5 +1,16 @@
 
 sys="`uname  | tr '[:upper:]' '[:lower:]'`"
+
+function brew_install_or_upgrade {
+    for next in $@; do
+       echo "Checking: ${next} ..."
+       if brew ls --versions "$next" >/dev/null; then
+           HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade "$next"
+       else
+           HOMEBREW_NO_AUTO_UPDATE=1 brew install "$next"
+       fi
+   done
+}
 #
 #
 

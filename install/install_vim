@@ -3,7 +3,7 @@
 source _env
 #
 if [ $sys = "darwin" ]; then
-  brew install macvim ctags vim-doc vim-scripts 
+  brew_install_or_upgrade  macvim ctags vim-doc vim-scripts 
 else
   sudo apt install vim ctags vim-doc vim-scripts -y
 fi

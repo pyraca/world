@@ -3,7 +3,7 @@
 source _env
 #
 if [ $sys = "darwin" ]; then
-  brew install zsh
+  brew_install_or_upgrade zsh
 else
   sudo apt install zsh  -y
 fi

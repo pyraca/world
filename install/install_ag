@@ -3,7 +3,7 @@
 source _env
 #
 if [ $sys = "darwin" ]; then
-   brew install the_silver_searcher 
+   brew_install_or_upgrade the_silver_searcher 
 else
    sudo apt install silversearcher-ag -y
 fi

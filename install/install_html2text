@@ -3,7 +3,7 @@
 source _env
 #
 if [ $sys = "darwin" ]; then
-   brew install html2text
+   brew_install_or_upgrade html2text
 else
    sudo apt install html2text -y
 fi

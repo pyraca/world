@@ -68,6 +68,10 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+#
+export VI_MODE_SET_CURSOR=true
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+#
 plugins=(z git fzf gradle man mvn docker themes vi-mode ssh-agent kubectl colorize colored-man-pages tmux genpass) 
 
 TERM=xterm-256color
@@ -109,7 +113,7 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
+bindkey -v
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000

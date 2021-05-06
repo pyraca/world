@@ -180,7 +180,7 @@ PATH="${PATH}:/sbin:/nbin"
 export EDITOR=vim
 [ -f .aliases ] && source .aliases
 #
-[ -f ~/.zsh_mine  ] && source ~/.zsh_mine
+[ -f ~/world/zshrc_mine  ] && source ~/world/zshrc_mine
 #
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #

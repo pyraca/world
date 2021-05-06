@@ -29,7 +29,7 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
  endfun
 
-autocmd BufWritePre *.ino,*.h,*.c,*.java,*.cpp,*.hpp  :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.ino,*.h,*.c,*.java,*.cpp,*.hpp,*.js,*.json  :call <SID>StripTrailingWhitespaces()
 
 set path+=**
 set wildmenu
@@ -189,6 +189,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_quiet_messages={'level':'warnings'}
 
 
 let g:ycm_min_num_of_chars_for_completion = 1
